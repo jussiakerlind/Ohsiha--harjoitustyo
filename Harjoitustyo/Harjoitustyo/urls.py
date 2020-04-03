@@ -25,4 +25,5 @@ urlpatterns = [
 #    path('', include('applikaatio.urls')),
     path('', TemplateView.as_view(template_name='home.html'), name='home'),
     path('items/', include('items.urls')),
+    path('weather/', include('weather.urls'))
 ]

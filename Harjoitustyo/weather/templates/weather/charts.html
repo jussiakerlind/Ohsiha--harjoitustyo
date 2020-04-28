@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Weather charts</title>
+</head>
+<body>
+    <div id="container"></div>
+    <script src="https://code.highcharts.com/highcharts.src.js"></script>
+    <script>
+    Highcharts.chart('container', {
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'Temperature and humidity'
+        },
+        xAxis: {
+            categories: [
+                {% for entry in weather_info %}'{{ entry.location }}'{% if not forloop.last %}, {% endif %}{% endfor %}
+            ]
+        },
+        series: [{
+            name: 'Temperature (°C)',
+            data: [
+                {% for entry in weather_info %}{{ entry.temperature }}{% if not forloop.last %}, {% endif %}{% endfor %}
+            ],
+            color: 'blue'
+        }, {
+            name: 'Humidity',
+            data: [
+            {% for entry in weather_info %}{{ entry.humidity }}{% if not forloop.last %}, {% endif %}{% endfor %}
+            ],
+            color: 'red'
+        }]
+    });
+    </script>    
+</body>
+</html>
+
+
